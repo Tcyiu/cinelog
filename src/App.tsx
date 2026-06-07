@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import AppRouter from './router/AppRouter'
 import { getTheme } from './utils/storage'
 
 function App() {
@@ -10,13 +11,7 @@ function App() {
     root.classList.add(theme)
   }, [])
 
-  return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="text-center text-2xl font-semibold tracking-normal">
-        CineLog - coming soon
-      </div>
-    </main>
-  )
+  return <AppRouter />
 }
 
 export default App
