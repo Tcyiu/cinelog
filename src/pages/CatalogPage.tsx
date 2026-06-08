@@ -75,33 +75,33 @@ const CatalogPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-900 dark:text-white">
       {/* Header */}
-      <div className="bg-dark-surface/30 border-b border-dark-border">
+      <div className="bg-gray-50 dark:bg-dark-surface/30 border-b border-gray-200 dark:border-dark-border">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold text-white mb-1">Catalog</h1>
-          <p className="text-dark-muted">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">Catalog</h1>
+          <p className="text-gray-600 dark:text-dark-muted">
             Browse {mediaItems.length} titles across all categories
           </p>
         </div>
       </div>
 
       {/* Filter Bar */}
-      <div className="sticky top-16 z-40 bg-dark-bg/95 backdrop-blur-sm border-b border-dark-border">
+      <div className="sticky top-16 z-40 bg-white/95 dark:bg-dark-bg/95 backdrop-blur-sm border-b border-gray-200 dark:border-dark-border">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap gap-3 items-center">
           {/* Search */}
           <div className="relative flex-1 min-w-[200px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dark-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-dark-muted" />
             <input
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search titles..."
-              className="w-full bg-dark-surface border border-dark-border rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder:text-dark-muted focus:outline-none focus:border-brand-500"
+              className="w-full bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-lg pl-9 pr-4 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-dark-muted focus:outline-none focus:border-brand-500"
             />
             {search && (
               <button
                 onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-dark-muted hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -112,7 +112,7 @@ const CatalogPage = () => {
           <select
             value={selectedType}
             onChange={e => setSelectedType(e.target.value as MediaType | 'all')}
-            className="bg-dark-surface border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500"
+            className="bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-brand-500"
           >
             <option value="all">All Types</option>
             <option value="movie">Movie</option>
@@ -126,7 +126,7 @@ const CatalogPage = () => {
           <select
             value={selectedGenre}
             onChange={e => setSelectedGenre(e.target.value)}
-            className="bg-dark-surface border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500"
+            className="bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-brand-500"
           >
             <option value="all">All Genres</option>
             {allGenres.map(g => (
@@ -140,7 +140,7 @@ const CatalogPage = () => {
           <select
             value={selectedYear}
             onChange={e => setSelectedYear(e.target.value)}
-            className="bg-dark-surface border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500"
+            className="bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-brand-500"
           >
             <option value="all">All Years</option>
             {allYears.map(y => (
@@ -154,7 +154,7 @@ const CatalogPage = () => {
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as typeof sortBy)}
-            className="bg-dark-surface border border-dark-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500"
+            className="bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-lg px-3 py-2 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-brand-500"
           >
             <option value="rating">Top Rated</option>
             <option value="popularity">Most Popular</option>
@@ -180,7 +180,7 @@ const CatalogPage = () => {
                 'p-2 rounded-lg transition-colors',
                 viewMode === 'grid'
                   ? 'bg-brand-500 text-white'
-                  : 'text-dark-muted hover:text-white hover:bg-dark-surface'
+                  : 'text-gray-600 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-surface'
               )}
             >
               <LayoutGrid className="w-4 h-4" />
@@ -191,7 +191,7 @@ const CatalogPage = () => {
                 'p-2 rounded-lg transition-colors',
                 viewMode === 'list'
                   ? 'bg-brand-500 text-white'
-                  : 'text-dark-muted hover:text-white hover:bg-dark-surface'
+                  : 'text-gray-600 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-surface'
               )}
             >
               <List className="w-4 h-4" />
@@ -203,7 +203,7 @@ const CatalogPage = () => {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Results Count */}
-        <p className="text-dark-muted mb-6">
+        <p className="text-gray-600 dark:text-dark-muted mb-6">
           {filteredItems.length} {filteredItems.length === 1 ? 'title' : 'titles'} found
         </p>
 
@@ -223,7 +223,7 @@ const CatalogPage = () => {
               <Link
                 key={item.id}
                 to={`/title/${item.id}`}
-                className="flex gap-4 bg-dark-card border border-dark-border rounded-lg overflow-hidden hover:border-brand-500 transition-colors group"
+                className="flex gap-4 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg overflow-hidden hover:border-brand-500 transition-colors group"
               >
                 <img
                   src={item.posterUrl}
@@ -232,17 +232,17 @@ const CatalogPage = () => {
                 />
                 <div className="flex-1 p-4 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-white group-hover:text-brand-500 transition-colors line-clamp-1">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand-500 transition-colors line-clamp-1">
                       {item.title}
                     </h3>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="text-sm text-dark-muted">{item.year}</span>
+                      <span className="text-sm text-gray-600 dark:text-dark-muted">{item.year}</span>
                       {item.genres.slice(0, 3).map(g => (
                         <Badge key={g} label={g} variant="genre" />
                       ))}
                     </div>
                   </div>
-                  <p className="text-sm text-dark-muted line-clamp-2">{item.synopsis}</p>
+                  <p className="text-sm text-gray-600 dark:text-dark-muted line-clamp-2">{item.synopsis}</p>
                 </div>
               </Link>
             ))}
@@ -252,9 +252,9 @@ const CatalogPage = () => {
         {/* Empty State */}
         {filteredItems.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20">
-            <SearchX className="w-16 h-16 text-dark-muted mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">No titles found</h2>
-            <p className="text-dark-muted mb-6">Try adjusting your filters or search query</p>
+            <SearchX className="w-16 h-16 text-gray-400 dark:text-dark-muted mb-4" />
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No titles found</h2>
+            <p className="text-gray-600 dark:text-dark-muted mb-6">Try adjusting your filters or search query</p>
             <Button onClick={resetFilters}>Reset Filters</Button>
           </div>
         )}

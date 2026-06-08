@@ -28,23 +28,23 @@ const SearchPage = () => {
   }, [query])
 
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen bg-white dark:bg-dark-bg text-gray-900 dark:text-white">
       {/* Search Header */}
-      <div className="bg-dark-surface/30 border-b border-dark-border">
+      <div className="bg-gray-50 dark:bg-dark-surface/30 border-b border-gray-200 dark:border-dark-border">
         <div className="max-w-4xl mx-auto px-4 py-12">
-          <h1 className="text-3xl font-bold text-white mb-6">Search</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Search</h1>
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-dark-muted" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-dark-muted" />
             <input
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Search by title, genre or tag..."
-              className="w-full bg-dark-surface border border-dark-border rounded-xl pl-12 pr-12 py-3.5 text-white placeholder:text-dark-muted focus:outline-none focus:border-brand-500 text-base"
+              className="w-full bg-gray-100 dark:bg-dark-surface border border-gray-300 dark:border-dark-border rounded-xl pl-12 pr-12 py-3.5 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-dark-muted focus:outline-none focus:border-brand-500 text-base"
             />
             {query && (
               <button
                 onClick={() => setQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-dark-muted hover:text-white transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -58,16 +58,16 @@ const SearchPage = () => {
         {/* Empty state — no query */}
         {!query && (
           <div className="flex flex-col items-center justify-center py-20">
-            <Search className="w-16 h-16 text-dark-muted mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">Start typing to search</h2>
-            <p className="text-dark-muted">Search across all titles, genres and tags</p>
+            <Search className="w-16 h-16 text-gray-400 dark:text-dark-muted mb-4" />
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Start typing to search</h2>
+            <p className="text-gray-600 dark:text-dark-muted">Search across all titles, genres and tags</p>
           </div>
         )}
 
         {/* Results found */}
         {query && results.length > 0 && (
           <>
-            <p className="text-dark-muted mb-6">
+            <p className="text-gray-600 dark:text-dark-muted mb-6">
               Found {results.length} {results.length === 1 ? 'result' : 'results'} for "{query}"
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -81,9 +81,9 @@ const SearchPage = () => {
         {/* No results */}
         {query && results.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20">
-            <SearchX className="w-16 h-16 text-dark-muted mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">No results found</h2>
-            <p className="text-dark-muted">Nothing matched "{query}". Try a different search term.</p>
+            <SearchX className="w-16 h-16 text-gray-400 dark:text-dark-muted mb-4" />
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No results found</h2>
+            <p className="text-gray-600 dark:text-dark-muted">Nothing matched "{query}". Try a different search term.</p>
           </div>
         )}
       </div>
