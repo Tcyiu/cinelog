@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { MediaItem } from '../../types'
+import { getItemCommunityRating } from '../../utils/ratings'
 import Badge from './Badge'
 import Rating from './Rating'
 
@@ -9,6 +10,8 @@ export interface MediaCardProps {
 }
 
 const MediaCard = ({ item, rank }: MediaCardProps) => {
+  const rating = getItemCommunityRating(item)
+
   return (
     <Link to={`/title/${item.id}`} className="block">
       <div className="group relative dark:bg-dark-card bg-white rounded-xl overflow-hidden border dark:border-dark-border border-gray-200 hover:border-brand-500 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/10 hover:-translate-y-1">
@@ -23,7 +26,7 @@ const MediaCard = ({ item, rank }: MediaCardProps) => {
 
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-            <Rating value={item.averageRating} size="sm" />
+            <Rating value={rating} count={item.ratingsCount} size="sm" />
           </div>
 
           {/* Media Type Badge */}

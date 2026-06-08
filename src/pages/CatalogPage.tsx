@@ -4,7 +4,8 @@ import { Search, X, LayoutGrid, List, SearchX } from 'lucide-react'
 import clsx from 'clsx'
 import { mediaItems } from '../data'
 import type { MediaType } from '../types'
-import { Button, MediaCard, Badge } from '../components/ui'
+import { Button, MediaCard, Badge, Rating } from '../components/ui'
+import { getItemCommunityRating } from '../utils/ratings'
 
 const CatalogPage = () => {
   const [search, setSearch] = useState('')
@@ -50,7 +51,7 @@ const CatalogPage = () => {
 
     switch (sortBy) {
       case 'rating':
-        result.sort((a, b) => b.averageRating - a.averageRating)
+        result.sort((a, b) => getItemCommunityRating(b) - getItemCommunityRating(a))
         break
       case 'popularity':
         result.sort((a, b) => b.ratingsCount - a.ratingsCount)
@@ -235,7 +236,8 @@ const CatalogPage = () => {
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand-500 transition-colors line-clamp-1">
                       {item.title}
                     </h3>
-                    <div className="flex flex-wrap gap-2 mt-2">
+                    <div className="flex flex-wrap items-center gap-2 mt-2">
+                      <Rating value={getItemCommunityRating(item)} count={item.ratingsCount} size="sm" />
                       <span className="text-sm text-gray-600 dark:text-dark-muted">{item.year}</span>
                       {item.genres.slice(0, 3).map(g => (
                         <Badge key={g} label={g} variant="genre" />

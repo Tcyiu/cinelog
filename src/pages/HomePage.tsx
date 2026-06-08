@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { Play, TrendingUp, Award, Clock } from 'lucide-react'
 import { mediaItems, fakeUsers, fakeReviews } from '../data'
 import { Button, Badge, Rating, MediaCard } from '../components/ui'
+import { getItemCommunityRating } from '../utils/ratings'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const HomePage = () => {
     .slice(0, 10)
 
   const topRatedItems = [...mediaItems]
-    .sort((a, b) => b.averageRating - a.averageRating)
+    .sort((a, b) => getItemCommunityRating(b) - getItemCommunityRating(a))
     .slice(0, 8)
 
   // Sort by year desc, then by id desc (since releaseDate is not present in types)
@@ -56,7 +57,7 @@ const HomePage = () => {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Rating
-                value={heroItem.averageRating}
+                value={getItemCommunityRating(heroItem)}
                 count={heroItem.ratingsCount}
                 size="lg"
               />

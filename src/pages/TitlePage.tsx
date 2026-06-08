@@ -8,6 +8,7 @@ import { mediaItems, fakeReviews } from '../data'
 import type { WatchStatus, UserListEntry } from '../types'
 import { Button, Badge, Rating } from '../components/ui'
 import { getEntryByTitleId, addOrUpdateEntry, removeEntry } from '../utils/storage'
+import { getCommunityRating } from '../utils/ratings'
 
 const TitlePage = () => {
   const { id } = useParams<{ id: string }>()
@@ -25,15 +26,14 @@ const TitlePage = () => {
   )
 
   const [userRating, setUserRating] = useState<number>(listEntry?.userRating ?? 0)
-  const [reviewText, setReviewText] = useState('')
-  const [reviewSubmitted, setReviewSubmitted] = useState(false)
+  const [reviewText, setReviewText] = useState(listEntry?.review ?? '')
+  const [reviewSubmitted, setReviewSubmitted] = useState(!!listEntry?.review?.trim())
 
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false)
   const statusDropdownRef = useRef<HTMLDivElement>(null)
   const statusButtonRef = useRef<HTMLButtonElement>(null)
 
-  const allRatings = [item.averageRating, ...titleReviews.map(r => r.rating)]
-  const avgRating = allRatings.reduce((a, b) => a + b, 0) / allRatings.length
+  const avgRating = getCommunityRating(item.id, item.averageRating)
 
   const statusLabels: Record<WatchStatus, string> = {
     watching: 'Watching',
@@ -123,6 +123,7 @@ const TitlePage = () => {
     const updated: UserListEntry = {
       ...listEntry!,
       userRating,
+      review: reviewText.trim() || undefined,
       updatedAt: new Date().toISOString().split('T')[0],
     }
     addOrUpdateEntry(updated)
