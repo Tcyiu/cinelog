@@ -43,6 +43,34 @@ const TitlePage = () => {
     on_hold: 'On Hold',
   }
 
+  const statusColors: Record<WatchStatus, { bg: string; text: string; button: string }> = {
+    watching: {
+      bg: 'bg-brand-500 hover:bg-brand-600',
+      text: 'text-brand-600 dark:text-white',
+      button: 'bg-brand-500 hover:bg-brand-600 text-white',
+    },
+    completed: {
+      bg: 'bg-green-500 hover:bg-green-600',
+      text: 'text-green-600 dark:text-green-400',
+      button: 'bg-green-500 hover:bg-green-600 text-white',
+    },
+    plan_to_watch: {
+      bg: 'bg-yellow-500 hover:bg-yellow-600',
+      text: 'text-yellow-600 dark:text-yellow-400',
+      button: 'bg-yellow-500 hover:bg-yellow-600 text-white',
+    },
+    dropped: {
+      bg: 'bg-red-500 hover:bg-red-600',
+      text: 'text-red-600 dark:text-red-400',
+      button: 'bg-red-500 hover:bg-red-600 text-white',
+    },
+    on_hold: {
+      bg: 'bg-orange-500 hover:bg-orange-600',
+      text: 'text-orange-600 dark:text-orange-400',
+      button: 'bg-orange-500 hover:bg-orange-600 text-white',
+    },
+  }
+
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -207,7 +235,10 @@ const TitlePage = () => {
                   <button
                     ref={statusButtonRef}
                     onClick={() => setStatusDropdownOpen(p => !p)}
-                    className="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-4 py-2.5 rounded-lg font-semibold transition-colors"
+                    className={clsx(
+                      'flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold transition-colors text-white',
+                      statusColors[listEntry.status].button
+                    )}
                   >
                     <Check className="w-4 h-4" />
                     {statusLabels[listEntry.status]}
@@ -223,8 +254,9 @@ const TitlePage = () => {
                           className={clsx(
                             'w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-gray-100 dark:hover:bg-dark-surface',
                             listEntry.status === status
-                              ? 'text-brand-500 dark:text-brand-500 font-semibold bg-gray-50 dark:bg-dark-surface/50'
-                              : 'text-gray-900 dark:text-white'
+                              ? 'font-semibold bg-gray-50 dark:bg-dark-surface/50'
+                              : '',
+                            statusColors[status].text
                           )}
                         >
                           {statusLabels[status]}
