@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Sun, Moon, Menu, X, User, LogOut } from 'lucide-react'
+import { Sun, Moon, Menu, X, User, LogOut, Search } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { getTheme, setTheme } from '../../utils/storage'
 
@@ -102,6 +102,15 @@ const Header = () => {
 
         {/* Right: Actions */}
         <div className="flex items-center gap-3">
+          {/* Search Button */}
+          <button
+            onClick={() => navigate('/search')}
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-surface transition-colors text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white"
+            aria-label="Search"
+          >
+            <Search className="w-5 h-5" />
+          </button>
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
