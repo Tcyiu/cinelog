@@ -14,7 +14,7 @@ const Badge = ({ label, variant = 'genre', className }: BadgeProps) => {
   // - status: bg-green-100 text-green-700
   // Let's refine colors to support both themes beautifully:
   const themeVariants = {
-    type: 'bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-400',
+    type: 'bg-black/60 text-white border border-brand-400/40 backdrop-blur-sm',
     genre: 'bg-gray-100 text-gray-600 border border-gray-200 dark:bg-dark-surface dark:text-dark-muted dark:border-dark-border/40',
     status: 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400',
   }

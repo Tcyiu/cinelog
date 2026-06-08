@@ -11,7 +11,7 @@ export interface MediaCardProps {
 const MediaCard = ({ item, rank }: MediaCardProps) => {
   return (
     <Link to={`/title/${item.id}`} className="block">
-      <div className="group relative bg-dark-card rounded-xl overflow-hidden border border-dark-border hover:border-brand-500 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/10 hover:-translate-y-1">
+      <div className="group relative dark:bg-dark-card bg-white rounded-xl overflow-hidden border dark:border-dark-border border-gray-200 hover:border-brand-500 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/10 hover:-translate-y-1">
         {/* Poster */}
         <div className="relative aspect-[2/3] overflow-hidden bg-dark-surface">
           <img
@@ -40,11 +40,11 @@ const MediaCard = ({ item, rank }: MediaCardProps) => {
         </div>
 
         {/* Info below poster */}
-        <div className="p-3">
-          <h3 className="font-semibold text-sm text-gray-200 line-clamp-1 group-hover:text-brand-500 transition-colors">
+        <div className="p-3 dark:bg-dark-card bg-gray-100">
+          <h3 className="font-semibold text-sm dark:text-gray-200 text-gray-900 line-clamp-1 group-hover:text-brand-500 transition-colors">
             {item.title}
           </h3>
-          <p className="text-dark-muted text-xs mt-1">{item.year}</p>
+          <p className="dark:text-dark-muted text-gray-600 text-xs mt-1">{item.year}</p>
         </div>
       </div>
     </Link>
