@@ -1,14 +1,18 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Search, X, LayoutGrid, List, SearchX } from 'lucide-react'
 import clsx from 'clsx'
 import { mediaItems } from '../data'
 import type { MediaType } from '../types'
-import { Button, MediaCard, Badge, Rating } from '../components/ui'
+import { Button, MediaCard, Badge, Rating, SkeletonCard, SkeletonList } from '../components/ui'
 import { getItemCommunityRating } from '../utils/ratings'
+import usePageTitle from '../hooks/usePageTitle'
 
 const CatalogPage = () => {
+  usePageTitle('Catalog')
+
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedType, setSelectedType] = useState<MediaType | 'all'>('all')
   const [selectedGenre, setSelectedGenre] = useState<string>('all')
   const [selectedYear, setSelectedYear] = useState<string>('all')
@@ -66,6 +70,11 @@ const CatalogPage = () => {
 
     return result
   }, [search, selectedType, selectedGenre, selectedYear, sortBy])
+
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 600)
+    return () => clearTimeout(t)
+  }, [])
 
   const resetFilters = () => {
     setSearch('')
@@ -208,51 +217,64 @@ const CatalogPage = () => {
           {filteredItems.length} {filteredItems.length === 1 ? 'title' : 'titles'} found
         </p>
 
-        {/* Grid View */}
-        {viewMode === 'grid' && filteredItems.length > 0 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {filteredItems.map(item => (
-              <MediaCard key={item.id} item={item} />
-            ))}
+        {isLoading ? (
+          <div
+            className={
+              viewMode === 'grid'
+                ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4'
+                : 'flex flex-col gap-3'
+            }
+          >
+            {Array.from({ length: 12 }).map((_, i) =>
+              viewMode === 'grid' ? <SkeletonCard key={i} /> : <SkeletonList key={i} />
+            )}
           </div>
-        )}
-
-        {/* List View */}
-        {viewMode === 'list' && filteredItems.length > 0 && (
-          <div className="space-y-4">
-            {filteredItems.map(item => (
-              <Link
-                key={item.id}
-                to={`/title/${item.id}`}
-                className="flex gap-4 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg overflow-hidden hover:border-brand-500 transition-colors group"
-              >
-                <img
-                  src={item.posterUrl}
-                  alt={item.title}
-                  className="w-24 h-32 object-cover flex-shrink-0 group-hover:opacity-80 transition-opacity"
-                />
-                <div className="flex-1 p-4 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand-500 transition-colors line-clamp-1">
-                      {item.title}
-                    </h3>
-                    <div className="flex flex-wrap items-center gap-2 mt-2">
-                      <Rating value={getItemCommunityRating(item)} count={item.ratingsCount} size="sm" />
-                      <span className="text-sm text-gray-600 dark:text-dark-muted">{item.year}</span>
-                      {item.genres.slice(0, 3).map(g => (
-                        <Badge key={g} label={g} variant="genre" />
-                      ))}
+        ) : filteredItems.length > 0 ? (
+          viewMode === 'grid' ? (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {filteredItems.map(item => (
+                <MediaCard key={item.id} item={item} />
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {filteredItems.map(item => (
+                <Link
+                  key={item.id}
+                  to={`/title/${item.id}`}
+                  className="flex gap-4 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg overflow-hidden hover:border-brand-500 transition-colors group"
+                >
+                  <img
+                    src={item.posterUrl}
+                    alt={item.title}
+                    className="w-24 h-32 object-cover flex-shrink-0 group-hover:opacity-80 transition-opacity"
+                  />
+                  <div className="flex-1 p-4 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-brand-500 transition-colors line-clamp-1">
+                        {item.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <Rating
+                          value={getItemCommunityRating(item)}
+                          count={item.ratingsCount}
+                          size="sm"
+                        />
+                        <span className="text-sm text-gray-600 dark:text-dark-muted">{item.year}</span>
+                        {item.genres.slice(0, 3).map(g => (
+                          <Badge key={g} label={g} variant="genre" />
+                        ))}
+                      </div>
                     </div>
+                    <p className="text-sm text-gray-600 dark:text-dark-muted line-clamp-2">
+                      {item.synopsis}
+                    </p>
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-dark-muted line-clamp-2">{item.synopsis}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-
-        {/* Empty State */}
-        {filteredItems.length === 0 && (
+                </Link>
+              ))}
+            </div>
+          )
+        ) : (
           <div className="flex flex-col items-center justify-center py-20">
             <SearchX className="w-16 h-16 text-gray-400 dark:text-dark-muted mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No titles found</h2>

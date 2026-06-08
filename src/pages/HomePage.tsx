@@ -3,8 +3,11 @@ import { Play, TrendingUp, Award, Clock } from 'lucide-react'
 import { mediaItems, fakeUsers, fakeReviews } from '../data'
 import { Button, Badge, Rating, MediaCard } from '../components/ui'
 import { getItemCommunityRating } from '../utils/ratings'
+import usePageTitle from '../hooks/usePageTitle'
 
 const HomePage = () => {
+  usePageTitle('Home')
+
   const navigate = useNavigate()
 
   // Calculate items based on media data safely (no compile-time fields errors)
@@ -55,7 +58,7 @@ const HomePage = () => {
             <p className="text-gray-600 dark:text-dark-muted text-base md:text-lg max-w-xl mb-6 line-clamp-2">
               {heroItem.synopsis}
             </p>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <Rating
                 value={getItemCommunityRating(heroItem)}
                 count={heroItem.ratingsCount}
@@ -99,12 +102,14 @@ const HomePage = () => {
         </div>
 
         {/* Horizontal scrollable row */}
-        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-smooth">
-          {trendingItems.map((item) => (
-            <div key={item.id} className="flex-none w-36 md:w-44">
-              <MediaCard item={item} />
-            </div>
-          ))}
+        <div className="overflow-x-auto pb-4 scrollbar-hide scroll-smooth">
+          <div className="flex gap-4 py-3">
+            {trendingItems.map((item) => (
+              <div key={item.id} className="flex-none w-36 md:w-44">
+                <MediaCard item={item} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -153,12 +158,14 @@ const HomePage = () => {
         </div>
 
         {/* Horizontal scrollable row */}
-        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-smooth">
-          {recentItems.map((item) => (
-            <div key={item.id} className="flex-none w-36 md:w-44">
-              <MediaCard item={item} />
-            </div>
-          ))}
+        <div className="overflow-x-auto pb-4 scrollbar-hide scroll-smooth">
+          <div className="flex gap-4 py-3">
+            {recentItems.map((item) => (
+              <div key={item.id} className="flex-none w-36 md:w-44">
+                <MediaCard item={item} />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

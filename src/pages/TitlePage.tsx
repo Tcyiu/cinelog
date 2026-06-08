@@ -9,6 +9,7 @@ import type { WatchStatus, UserListEntry } from '../types'
 import { Button, Badge, Rating } from '../components/ui'
 import { getEntryByTitleId, addOrUpdateEntry, removeEntry } from '../utils/storage'
 import { getCommunityRating } from '../utils/ratings'
+import usePageTitle from '../hooks/usePageTitle'
 
 const TitlePage = () => {
   const { id } = useParams<{ id: string }>()
@@ -16,6 +17,8 @@ const TitlePage = () => {
   const navigate = useNavigate()
 
   const item = mediaItems.find(m => m.id === id)
+
+  usePageTitle(item?.title ?? 'Title')
 
   if (!item) return <Navigate to="/404" replace />
 
@@ -152,12 +155,12 @@ const TitlePage = () => {
             <img
               src={item.posterUrl}
               alt={item.title}
-              className="w-48 h-72 md:w-56 md:h-80 object-cover rounded-2xl shadow-2xl border-2 border-gray-200 dark:border-dark-border"
+              className="w-48 h-72 md:w-56 md:h-80 object-cover rounded-2xl shadow-2xl border-2 border-gray-200 dark:border-dark-border mx-auto md:mx-0"
             />
           </div>
 
           {/* Info */}
-          <div className="flex-1 pt-32 md:pt-8">
+          <div className="flex-1 pt-4 md:pt-8">
             {/* Badges */}
             <div className="flex flex-wrap gap-2 mb-3">
               <Badge label={item.type} variant="type" />

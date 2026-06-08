@@ -3,8 +3,11 @@ import { useSearchParams } from 'react-router-dom'
 import { Search, X, SearchX } from 'lucide-react'
 import { mediaItems } from '../data'
 import { MediaCard } from '../components/ui'
+import usePageTitle from '../hooks/usePageTitle'
 
 const SearchPage = () => {
+  usePageTitle('Search')
+
   const [searchParams, setSearchParams] = useSearchParams()
   const query = searchParams.get('q') ?? ''
 

@@ -6,8 +6,11 @@ import { mediaItems } from '../data'
 import type { MediaType } from '../types'
 import { Badge, Rating } from '../components/ui'
 import { getItemCommunityRating } from '../utils/ratings'
+import usePageTitle from '../hooks/usePageTitle'
 
 const TopPage = () => {
+  usePageTitle('Top Rated')
+
   const [filterType, setFilterType] = useState<MediaType | 'all'>('all')
 
   const rankedItems = useMemo(() => {

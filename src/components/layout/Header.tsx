@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Sun, Moon, Menu, X, User, LogOut, Search } from 'lucide-react'
+import clsx from 'clsx'
 import { useAuth } from '../../context/AuthContext'
 import { getTheme, setTheme } from '../../utils/storage'
 
@@ -10,24 +11,26 @@ const Header = () => {
   const navigate = useNavigate()
 
   const [theme, setThemeState] = useState<'dark' | 'light'>(() => getTheme())
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const dropdownRef = useRef<HTMLDivElement>(null)
   const avatarButtonRef = useRef<HTMLButtonElement>(null)
 
-  // Toggle theme
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(nextTheme)
     setThemeState(nextTheme)
-    
+
     const root = document.documentElement
     root.classList.remove('dark', 'light')
     root.classList.add(nextTheme)
   }
 
-  // Handle click outside dropdown
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [location.pathname])
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -47,7 +50,6 @@ const Header = () => {
     }
   }, [isDropdownOpen])
 
-  // Navigation config
   const navItems = [
     { label: 'Catalog', path: '/catalog' },
     { label: 'Search', path: '/search' },
@@ -63,26 +65,15 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 dark:bg-dark-card/90 border-b border-gray-200 dark:border-dark-border backdrop-blur-sm transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
-        {/* Left: Logo & Mobile Menu Toggle */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-1.5 rounded-lg text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-surface md:hidden transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-          <Link
-            to="/"
-            className="font-bold text-xl text-brand-500 tracking-wider hover:opacity-90 transition-opacity"
-          >
-            CineLog
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className="font-bold text-xl text-brand-500 tracking-wider hover:opacity-90 transition-opacity"
+        >
+          CineLog
+        </Link>
 
-        {/* Center: Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => {
+          {navItems.map(item => {
             const isActive = location.pathname === item.path
             return (
               <Link
@@ -100,9 +91,7 @@ const Header = () => {
           })}
         </nav>
 
-        {/* Right: Actions */}
         <div className="flex items-center gap-3">
-          {/* Search Button */}
           <button
             onClick={() => navigate('/search')}
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-surface transition-colors text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white"
@@ -111,7 +100,6 @@ const Header = () => {
             <Search className="w-5 h-5" />
           </button>
 
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-surface transition-colors text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white"
@@ -124,9 +112,8 @@ const Header = () => {
             )}
           </button>
 
-          {/* Auth Button/Dropdown */}
           {isAuthenticated && user ? (
-            <div className="relative">
+            <div className="relative hidden md:block">
               <button
                 ref={avatarButtonRef}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -139,11 +126,10 @@ const Header = () => {
                 />
               </button>
 
-              {/* Dropdown Menu */}
               {isDropdownOpen && (
                 <div
                   ref={dropdownRef}
-                  className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg shadow-xl py-1 z-50 transition-all transform origin-top-right animate-in fade-in slide-in-from-top-1 duration-100"
+                  className="absolute right-0 mt-2 w-48 bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-lg shadow-xl py-1 z-50"
                 >
                   <div className="px-4 py-2 border-b border-gray-200 dark:border-dark-border">
                     <p className="text-xs text-gray-500 dark:text-dark-muted">Signed in as</p>
@@ -172,34 +158,76 @@ const Header = () => {
           ) : (
             <button
               onClick={() => navigate('/login')}
-              className="bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition-colors"
+              className="hidden md:block bg-brand-500 hover:bg-brand-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold transition-colors"
             >
               Sign In
             </button>
           )}
+
+          <button
+            onClick={() => setMobileMenuOpen(p => !p)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-surface transition-colors text-gray-500 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card px-4 py-3 space-y-2 transition-all duration-300">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  isActive
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card">
+          <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col gap-1">
+            {[
+              { to: '/catalog', label: 'Catalog' },
+              { to: '/search', label: 'Search' },
+              { to: '/top', label: 'Top' },
+              ...(isAuthenticated
+                ? [
+                    { to: '/list', label: 'My List' },
+                    { to: '/profile', label: 'Profile' },
+                    { to: '/compare', label: 'Compare' },
+                  ]
+                : []),
+            ].map(link => (
+              <button
+                key={link.to}
+                onClick={() => {
+                  navigate(link.to)
+                  setMobileMenuOpen(false)
+                }}
+                className={clsx(
+                  'text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                  location.pathname === link.to
                     ? 'bg-brand-500/10 text-brand-500'
-                    : 'text-gray-600 hover:text-gray-900 dark:text-dark-muted dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-surface'
-                }`}
+                    : 'text-gray-600 dark:text-dark-muted hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-dark-surface'
+                )}
               >
-                {item.label}
-              </Link>
-            )
-          })}
+                {link.label}
+              </button>
+            ))}
+            {!isAuthenticated && (
+              <button
+                onClick={() => {
+                  navigate('/login')
+                  setMobileMenuOpen(false)
+                }}
+                className="mt-2 w-full bg-brand-500 hover:bg-brand-600 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors"
+              >
+                Sign In
+              </button>
+            )}
+            {isAuthenticated && user && (
+              <button
+                onClick={() => {
+                  handleSignOut()
+                  setMobileMenuOpen(false)
+                }}
+                className="mt-2 w-full border border-gray-200 dark:border-dark-border text-red-600 dark:text-red-400 py-2.5 rounded-lg text-sm font-semibold transition-colors hover:bg-gray-100 dark:hover:bg-dark-surface"
+              >
+                Sign Out
+              </button>
+            )}
+          </div>
         </div>
       )}
     </header>

@@ -7,8 +7,11 @@ import type { MediaItem, MediaType, UserListEntry } from '../types'
 import { Button, Rating } from '../components/ui'
 import { getUserList } from '../utils/storage'
 import { countUserReviews } from '../utils/userStats'
+import usePageTitle from '../hooks/usePageTitle'
 
 const ProfilePage = () => {
+  usePageTitle('Profile')
+
   const { user } = useAuth()
   const navigate = useNavigate()
 

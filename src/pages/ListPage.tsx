@@ -7,8 +7,11 @@ import { mediaItems } from '../data'
 import type { MediaItem, UserListEntry, WatchStatus } from '../types'
 import { Button, Badge } from '../components/ui'
 import { getUserList, addOrUpdateEntry, removeEntry } from '../utils/storage'
+import usePageTitle from '../hooks/usePageTitle'
 
 const ListPage = () => {
+  usePageTitle('My List')
+
   const { user } = useAuth()
   const navigate = useNavigate()
 
@@ -76,12 +79,16 @@ const ListPage = () => {
   const handleRatingChange = (titleId: string, rating: number) => {
     const entry = entries.find(e => e.titleId === titleId)
     if (!entry) return
-    const updated = {
-      ...entry,
-      userRating: rating,
-      updatedAt: new Date().toISOString().split('T')[0],
+
+    const updatedAt = new Date().toISOString().split('T')[0]
+
+    if (entry.userRating === rating) {
+      const { userRating: _, ...rest } = entry
+      addOrUpdateEntry({ ...rest, updatedAt })
+    } else {
+      addOrUpdateEntry({ ...entry, userRating: rating, updatedAt })
     }
-    addOrUpdateEntry(updated)
+
     setEntries(getUserList())
   }
 
@@ -297,24 +304,42 @@ const ListPage = () => {
 
                     {/* Rating Stars */}
                     <div className="flex items-center gap-0.5">
-                      {Array.from({ length: 10 }, (_, i) => i + 1).map(n => (
-                        <button
-                          key={n}
-                          onClick={() => handleRatingChange(entry.titleId, n)}
-                          className={clsx(
-                            'text-lg transition-transform hover:scale-110',
-                            n <= (entry.userRating ?? 0)
-                              ? 'text-yellow-400'
-                              : 'text-gray-300 dark:text-dark-border hover:text-yellow-400/50 dark:hover:text-yellow-400/50'
-                          )}
-                        >
-                          ★
-                        </button>
-                      ))}
-                      {entry.userRating && (
-                        <span className="ml-1 text-gray-900 dark:text-white text-xs font-medium">
-                          {entry.userRating}/10
-                        </span>
+                      <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-hide">
+                        {Array.from({ length: 10 }, (_, i) => i + 1).map(n => (
+                          <button
+                            key={n}
+                            type="button"
+                            onClick={() => handleRatingChange(entry.titleId, n)}
+                            title={
+                              entry.userRating === n
+                                ? 'Click to remove rating'
+                                : `Rate ${n}/10`
+                            }
+                            className={clsx(
+                              'text-lg transition-transform hover:scale-110 select-none flex-none',
+                              n <= (entry.userRating ?? 0)
+                                ? 'text-yellow-400'
+                                : 'text-gray-300 dark:text-dark-border hover:text-yellow-400/50 dark:hover:text-yellow-400/50'
+                            )}
+                          >
+                            ★
+                          </button>
+                        ))}
+                      </div>
+                      {entry.userRating !== undefined && (
+                        <>
+                          <span className="ml-1 text-gray-900 dark:text-white text-xs font-medium flex-none">
+                            {entry.userRating}/10
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleRatingChange(entry.titleId, entry.userRating!)}
+                            className="text-gray-500 dark:text-dark-muted hover:text-red-400 dark:hover:text-red-400 text-xs flex-none transition-colors"
+                            title="Remove rating"
+                          >
+                            ✕
+                          </button>
+                        </>
                       )}
                     </div>
                   </div>

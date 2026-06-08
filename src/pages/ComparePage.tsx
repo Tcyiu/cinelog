@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import { fakeUsers, mediaItems } from '../data'
 import { getUserList } from '../utils/storage'
 import { countUserReviews } from '../utils/userStats'
+import usePageTitle from '../hooks/usePageTitle'
 
 const CompareRow = ({
   label,
@@ -48,6 +49,8 @@ const CompareRow = ({
 }
 
 const ComparePage = () => {
+  usePageTitle('Compare')
+
   const { user } = useAuth()
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null)
 
