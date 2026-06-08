@@ -8,7 +8,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Thriller', 'Mystery', 'Sci-Fi'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A radio engineer starts receiving emergency broadcasts from a city that disappeared years ago. As the signal grows clearer, she realizes the messages are changing events in her own life.',
     posterUrl: 'https://picsum.photos/seed/title-1/300/450',
@@ -26,7 +26,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Drama', 'Crime', 'Mystery'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A former detective returns to a coastal town after her brother is accused of murder. The investigation exposes a quiet network of secrets hidden behind the town facade.',
     posterUrl: 'https://picsum.photos/seed/title-2/300/450',
@@ -44,7 +44,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Drama', 'Historical', 'Romance'],
     year: 2019,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'In the final summer before a valley is flooded for a dam project, two childhood friends try to preserve their family orchard. Their reunion turns into a tender story about memory and loss.',
     posterUrl: 'https://picsum.photos/seed/title-3/300/450',
@@ -62,7 +62,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Action', 'Sci-Fi', 'Crime'],
     year: 2022,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A courier in a vertical megacity steals data that could expose the ruling security syndicate. Every district becomes a battlefield as allies and enemies trade places overnight.',
     posterUrl: 'https://picsum.photos/seed/title-4/300/450',
@@ -80,7 +80,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Comedy', 'Romance', 'Slice of Life'],
     year: 2018,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'Two rival chefs are forced to share a tiny pop-up restaurant during a city food festival. Their menus clash first, then their ambitions, and eventually their hearts.',
     posterUrl: 'https://picsum.photos/seed/title-5/300/450',
@@ -98,7 +98,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Horror', 'Thriller', 'Psychological'],
     year: 2023,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A research crew in the Arctic finds an abandoned station where every clock is counting down to a different time. Isolation turns suspicion into terror as the crew follows the wrong countdown.',
     posterUrl: 'https://picsum.photos/seed/title-6/300/450',
@@ -116,7 +116,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Fantasy', 'Adventure', 'Drama'],
     year: 2024,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A cartographer follows origami suns drifting down a magical river that appears only once each century. The journey forces him to choose between mapping the world and saving one forgotten village.',
     posterUrl: 'https://picsum.photos/seed/title-7/300/450',
@@ -134,7 +134,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Drama', 'Romance', 'Slice of Life'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'After an earthquake damages their school, a group of students form a choir to keep the community center open. Their rehearsals become a place where grief and hope can share the same room.',
     posterUrl: 'https://picsum.photos/seed/title-8/300/450',
@@ -152,7 +152,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Action', 'Thriller', 'Crime'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'An intelligence analyst discovers a covert operation hidden inside disaster relief logistics. To stop it, he must work with the field agent who once exposed his family.',
     posterUrl: 'https://picsum.photos/seed/title-9/300/450',
@@ -170,7 +170,7 @@ export const mediaItems: MediaItem[] = [
     type: 'movie',
     genres: ['Psychological', 'Mystery', 'Drama'],
     year: 2022,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A therapist inherits a building where each apartment seems to recreate a patient memory. The deeper she enters the rooms, the less certain she becomes about who is being treated.',
     posterUrl: 'https://picsum.photos/seed/title-10/300/450',
@@ -188,7 +188,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Drama', 'Sci-Fi', 'Adventure'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A traveling repair crew crosses a fragmented continent to restore a chain of old railway stations. Each stop reveals a new community trying to rebuild after the collapse.',
     posterUrl: 'https://picsum.photos/seed/title-11/300/450',
@@ -206,7 +206,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Mystery', 'Horror', 'Supernatural'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A librarian cataloging forbidden films finds that the footage changes whenever someone watches it alone. The archive slowly becomes a map to a missing town.',
     posterUrl: 'https://picsum.photos/seed/title-12/300/450',
@@ -224,7 +224,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Historical', 'Drama', 'Crime'],
     year: 2019,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A palace clockmaker becomes an unwilling witness to a royal conspiracy. Her craft gives her access to rooms where every second can alter the line of succession.',
     posterUrl: 'https://picsum.photos/seed/title-13/300/450',
@@ -260,7 +260,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Comedy', 'Drama', 'Slice of Life'],
     year: 2018,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A family-run diner near a ferry terminal becomes a meeting place for workers, travelers, and old friends. The series follows small meals with surprisingly large consequences.',
     posterUrl: 'https://picsum.photos/seed/title-15/300/450',
@@ -278,7 +278,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Crime', 'Drama', 'Thriller'],
     year: 2022,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'An accountant for a criminal empire starts copying the books after her mentor vanishes. Numbers become weapons as every balance sheet points to a betrayal.',
     posterUrl: 'https://picsum.photos/seed/title-16/300/450',
@@ -314,7 +314,7 @@ export const mediaItems: MediaItem[] = [
     type: 'series',
     genres: ['Supernatural', 'Mystery', 'Drama'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'Every midnight, a town bell rings for people who are about to vanish. A group of former classmates reunites to find the source before their names appear in the tower ledger.',
     posterUrl: 'https://picsum.photos/seed/title-18/300/450',
@@ -332,7 +332,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Slice of Life', 'Romance', 'Comedy'],
     year: 2019,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A rooftop gardening club turns an abandoned school building into a colorful refuge. Between exams and awkward confessions, the students learn how much patience growth requires.',
     posterUrl: 'https://picsum.photos/seed/title-19/300/450',
@@ -350,7 +350,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Action', 'Sci-Fi', 'Drama'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'Young pilots operate ancient machines housed inside mountain shrines. Their battles are spectacular, but the real conflict is deciding what traditions are worth protecting.',
     posterUrl: 'https://picsum.photos/seed/title-20/300/450',
@@ -368,7 +368,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Fantasy', 'Adventure', 'Supernatural'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A courier delivers letters between humans and spirits during the one hour before dawn. Each errand reveals a small wish that could change an entire town.',
     posterUrl: 'https://picsum.photos/seed/title-21/300/450',
@@ -386,7 +386,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Psychological', 'Thriller', 'Mystery'],
     year: 2022,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A student council election becomes a psychological game when candidates can broadcast thoughts for ten seconds each day. The power promises honesty but rewards manipulation.',
     posterUrl: 'https://picsum.photos/seed/title-22/300/450',
@@ -404,7 +404,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Comedy', 'Slice of Life', 'Sci-Fi'],
     year: 2018,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A tiny cafe on an orbital station serves homesick travelers and overworked engineers. The staff solves everyday problems with coffee, jokes, and occasional zero-gravity chaos.',
     posterUrl: 'https://picsum.photos/seed/title-23/300/450',
@@ -458,7 +458,7 @@ export const mediaItems: MediaItem[] = [
     type: 'anime',
     genres: ['Sci-Fi', 'Drama', 'Adventure'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A mechanic rebuilds a sentient train that remembers every passenger it has carried. Together they cross a continent where machines are treated as myths.',
     posterUrl: 'https://picsum.photos/seed/title-26/300/450',
@@ -476,7 +476,7 @@ export const mediaItems: MediaItem[] = [
     type: 'cartoon',
     genres: ['Adventure', 'Comedy', 'Fantasy'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A troop of young explorers maps floating islands above their town. Their badges are earned through kindness, curiosity, and the occasional spectacular mistake.',
     posterUrl: 'https://picsum.photos/seed/title-27/300/450',
@@ -494,7 +494,7 @@ export const mediaItems: MediaItem[] = [
     type: 'cartoon',
     genres: ['Comedy', 'Adventure', 'Slice of Life'],
     year: 2019,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A group of handmade toy musicians tour bedrooms, attics, and forgotten toy boxes. Every concert helps a lonely object find a new purpose.',
     posterUrl: 'https://picsum.photos/seed/title-28/300/450',
@@ -512,7 +512,7 @@ export const mediaItems: MediaItem[] = [
     type: 'cartoon',
     genres: ['Adventure', 'Sci-Fi', 'Comedy'],
     year: 2020,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A small comet leaves its orbit to find a missing constellation. Along the way, it learns that being bright is less important than helping others shine.',
     posterUrl: 'https://picsum.photos/seed/title-29/300/450',
@@ -566,7 +566,7 @@ export const mediaItems: MediaItem[] = [
     type: 'web-series',
     genres: ['Comedy', 'Slice of Life', 'Romance'],
     year: 2021,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'Three developers move into a shared apartment while launching an app that never quite works. Their bugs are technical, emotional, and usually discovered during dinner.',
     posterUrl: 'https://picsum.photos/seed/title-32/300/450',
@@ -584,7 +584,7 @@ export const mediaItems: MediaItem[] = [
     type: 'web-series',
     genres: ['Horror', 'Mystery', 'Thriller'],
     year: 2022,
-    status: 'completed',
+    status: 'finished',
     synopsis:
       'A late-night streamer reviews strange videos submitted by anonymous viewers. The uploads begin predicting events in her studio before they happen.',
     posterUrl: 'https://picsum.photos/seed/title-33/300/450',

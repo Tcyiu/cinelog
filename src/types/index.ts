@@ -1,6 +1,6 @@
 export type MediaType = 'movie' | 'series' | 'anime' | 'cartoon' | 'web-series'
 
-export type MediaStatus = 'ongoing' | 'completed' | 'announced'
+export type MediaStatus = 'ongoing' | 'finished' | 'announced'
 
 export type WatchStatus =
   | 'watching'
